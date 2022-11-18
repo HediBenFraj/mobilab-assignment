@@ -4,9 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BankAccountModule } from './bank-account/bank-account.module';
 import { config } from './config/keys';
+import { TransactionModule } from './transaction/transaction.module';
 
 @Module({
-  imports: [BankAccountModule, MongooseModule.forRoot(config.mongoURI)],
+  imports: [BankAccountModule, TransactionModule, MongooseModule.forRoot(config.mongoURI)],
   controllers: [AppController],
   providers: [AppService],
 })
