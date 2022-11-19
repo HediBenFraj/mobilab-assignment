@@ -14,8 +14,6 @@ export class BankAccountService {
   constructor(@InjectModel('BankAccount') private readonly BankAccountModel:Model<BankAccount>, private readonly requestService: RequestService){}
 
   async create(createBankAccountDto: CreateBankAccountDto): Promise<BankAccount> {
-        this.log(this.create)
-
     const userId = this.requestService.getUserId()
 
     const newBankAccount = new this.BankAccountModel({
@@ -26,33 +24,23 @@ export class BankAccountService {
     return await newBankAccount.save()
   }
 
-  async findAll():Promise<BankAccount[]> {
-    this.log(this.findAll)
-    
+  async findAll():Promise<BankAccount[]> { 
     return await this.BankAccountModel.find()
   }
 
   async findOne(id: string) : Promise<BankAccount> {
-    this.log(this.findOne)
-
     return await this.BankAccountModel.findById(id)
   }
 
   async findByOwnerId(ownerId: string) : Promise<BankAccount[]> {
-    this.log(this.findByOwnerId)
-
     return await this.BankAccountModel.find({ownerId})
   }
 
   async update(id: string, updateBankAccountDto: UpdateBankAccountDto): Promise<BankAccount> {
-    this.log(this.update)
-
     return await this.BankAccountModel.findByIdAndUpdate(id, updateBankAccountDto, {new: true})
   }
 
   async remove(id: string): Promise<BankAccount> {
-    this.log(this.remove)
-
     return await this.BankAccountModel.findByIdAndRemove(id)
   }
 
