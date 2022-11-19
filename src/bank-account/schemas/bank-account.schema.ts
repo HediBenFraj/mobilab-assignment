@@ -14,6 +14,10 @@ export const BankAccountSchema = new mongoose.Schema({
         type : String,
         default : 'New Account'
     },
+    balance :{
+        type : Number,
+        default : 0
+    }
 },{
     timestamps: true                    
 })
