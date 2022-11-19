@@ -13,7 +13,7 @@ export const BankAccountSchema = new mongoose.Schema({
     name : {
         type : String,
         default : 'New Account'
-    },
+    }
 },{
     timestamps: true                    
 })
