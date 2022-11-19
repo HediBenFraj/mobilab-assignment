@@ -9,6 +9,7 @@ import { RequestService } from 'src/request.service';
 @Module({
   imports: [MongooseModule.forFeature([{name: 'BankAccount',schema:BankAccountSchema}])],
   controllers: [BankAccountController],
-  providers: [BankAccountService, RequestService]
+  providers: [BankAccountService, RequestService],
+  exports: [BankAccountService]
 })
 export class BankAccountModule {}

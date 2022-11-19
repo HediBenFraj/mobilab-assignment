@@ -9,12 +9,18 @@ export class CreateTransactionDto {
     @IsNotEmpty()
     readonly recieverAccountId: string;
 
-  
-    readonly currency: string;
-
-    @IsNotEmpty()
     @IsNumber()
-    readonly amount: number;
-    
+    @IsNotEmpty()
+    readonly sentAmount: number;
+
+    readonly fromCurrency: string;
+
+    readonly toCurrency: string;
+
+    readonly recievedAmount: number;
+
+    readonly conversionRate: number;
+
+    readonly note: string;
 
 }

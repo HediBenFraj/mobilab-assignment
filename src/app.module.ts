@@ -10,9 +10,10 @@ import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { AuthenticationMiddleware } from './middleware/authentication.middleware';
 import { RequestService } from './request.service';
 import { TransactionModule } from './transaction/transaction.module';
+import { HttpModule } from '@nestjs/axios'
 
 @Module({
-  imports: [BankAccountModule, TransactionModule, MongooseModule.forRoot(config.mongoURI)],
+  imports: [HttpModule,BankAccountModule, TransactionModule, MongooseModule.forRoot(config.mongoURI)],
   controllers: [AppController],
   providers: [AppService,AuthenticationMiddleware,RequestService,
   {

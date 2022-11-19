@@ -9,14 +9,23 @@ export const TransactionSchema = new mongoose.Schema({
         type : String,
         required : true,
     },
-
-    amount : {
+    sentAmount : {
         type : Number,
-        required : true,
     },
-    currency : {
+    recievedAmount : {
+        type : Number,
+    },
+    conversionRate : {
+        type : Number,
+    },
+    fromCurrency : {
         type : String,
-        
+    },
+    toCurrency : {
+        type : String,
+    },
+    note : {
+        type: String
     }
 },{
     timestamps: true                    

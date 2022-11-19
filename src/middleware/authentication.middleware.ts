@@ -1,5 +1,6 @@
 import { Injectable, Logger, NestMiddleware } from "@nestjs/common";
 import { NextFunction, Request, Response } from "express";
+import { UsertNotAuthenticatedException } from "src/exceptions/user.exceptions";
 import { RequestService } from "src/request.service";
 
 @Injectable()
@@ -18,9 +19,8 @@ export class AuthenticationMiddleware implements NestMiddleware{
 
             next()    
         }else{
-            res.sendStatus(400)
+            throw new UsertNotAuthenticatedException()
         }
- 
-        
+
     }
 }

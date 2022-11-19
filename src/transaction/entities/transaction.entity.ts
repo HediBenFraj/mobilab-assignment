@@ -1,8 +1,12 @@
 export class Transaction {
-    id: string;
+    _id: string;
     senderAccountId: string;
     recieverAccountId: string;
-    currency: string;
-    amount: number;
+    fromCurrency: string;
+    toCurrency: string;
+    sentAmount: number;
+    recievedAmount: number;
+    transferRate: number;
+    note: string
     // we can add date here but mongodb takes care of the createdAt attribute
 }

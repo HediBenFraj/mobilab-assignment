@@ -3,4 +3,5 @@ export class BankAccount {
     ownerId: string;
     currency: string;
     name?: string;
+    balance : number
 }
