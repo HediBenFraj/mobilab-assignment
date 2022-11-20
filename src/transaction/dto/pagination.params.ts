@@ -1,8 +1,9 @@
-import { IsNumber, Min, IsOptional, IsString, IsDefined, Max } from 'class-validator';
+import { IsNumber, Min, IsOptional, IsString, IsDefined, Max, IsNotEmpty } from 'class-validator';
 import { Type } from 'class-transformer';
  
 export class PaginationParams {
   @IsDefined()
+  @IsNotEmpty()
   @Type(() => Number)
   @IsNumber()
   @Min(0)

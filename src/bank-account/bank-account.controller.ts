@@ -3,8 +3,8 @@ import { BankAccountService } from './bank-account.service';
 import { CreateBankAccountDto } from './dto/create-bank-account.dto';
 import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
 import { BankAccount } from './entities/bank-account.entity';
-import { BankAccountNotFoundException } from 'src/exceptions/bank-account.exceptions';
-import { InvalidInputException } from 'src/exceptions/global.exceptions';
+import { BankAccountNotFoundException } from '../exceptions/bank-account.exceptions';
+import { InvalidInputException } from '../exceptions/global.exceptions';
 import { PaginationParams } from '../transaction/dto/pagination.params';
 
 @Controller('bank-account')
