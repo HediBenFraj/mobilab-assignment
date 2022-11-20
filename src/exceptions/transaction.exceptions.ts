@@ -12,9 +12,3 @@ export class LowBalanceException extends HttpException{
     }
 }
 
-
-export class InvalidInputException extends HttpException{
-    constructor(msg?: string, status?: HttpStatus){
-        super(msg || "Invalid Input Exception", status || HttpStatus.BAD_REQUEST)
-    }
-}
