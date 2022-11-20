@@ -1,20 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { RequestService } from 'src/request.service';
-import { ConversionService } from 'src/conversion/conversion.service';
+import { ConversionService } from '../conversion/conversion.service';
 import { CreateBankAccountDto } from './dto/create-bank-account.dto';
 import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
 import { BankAccount } from './entities/bank-account.entity';
 import * as mongoose from 'mongoose'
-import { InvalidInputException } from 'src/exceptions/global.exceptions';
+import { InvalidInputException } from '../exceptions/global.exceptions';
+import { RequestService } from '../request.service';
 
 @Injectable()
 export class BankAccountService {
   constructor(@InjectModel('BankAccount') private readonly BankAccountModel:Model<BankAccount>, private readonly requestService: RequestService,private readonly conversionService:ConversionService){}
 
   async create(createBankAccountDto: CreateBankAccountDto): Promise<BankAccount> {
-    console.log("getting user id")
+ 
     const userId = this.requestService.getUserId() || "some user id"
 
     const newBankAccount = new this.BankAccountModel({
@@ -76,7 +76,7 @@ export class BankAccountService {
     this.patch(senderAccount.id, {balance : newSenderAccountBalance},session)
     this.patch(recieverAccount.id, {balance : newRecieverAccountBalance},session)
 
-    return conversionObject
+    return {conversionObject,newSenderAccountBalance,newRecieverAccountBalance}
   }
 
 }

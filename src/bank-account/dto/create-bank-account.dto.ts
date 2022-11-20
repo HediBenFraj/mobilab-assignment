@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsString, Min } from "class-validator";
 
 export class CreateBankAccountDto {
     @IsString()
@@ -11,5 +11,6 @@ export class CreateBankAccountDto {
 
     @IsOptional()
     @IsNumber()
+    @Min(0)
     readonly balance: number
 }

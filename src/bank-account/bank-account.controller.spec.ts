@@ -23,8 +23,15 @@ describe('BankAccountController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [BankAccountController],
-      providers: [BankAccountService],
-    }).overrideProvider(BankAccountService).useValue(mockBankAccountService).compile();
+      providers: [
+        {
+          provide: BankAccountService,
+          useValue: {
+            findById: jest.fn(),
+          },
+        },
+      ],
+    }).compile();
 
     controller = module.get<BankAccountController>(BankAccountController);
   });
@@ -35,9 +42,9 @@ describe('BankAccountController', () => {
 
   it('should create a bank account',()=>{
     const createDto = {
-      ownerId : "12312",
       currency : 'USD',
-      name :"New Account"
+      balance : 0,
+      name :"some account"
     }
 
     expect(controller.create(createDto)).toEqual({
@@ -53,9 +60,9 @@ describe('BankAccountController', () => {
 
   it('should update a bank account',()=>{
     const updateDto = {
-      ownerId : "12312",
       currency : 'USD',
-      name :"New Account"
+      name :"New Account",
+      balance: 200
     }
 
     expect(controller.update('1',updateDto)).toEqual({

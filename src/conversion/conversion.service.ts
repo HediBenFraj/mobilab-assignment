@@ -1,5 +1,5 @@
 import { Injectable, Logger } from "@nestjs/common";
-import { config } from "src/config/keys";
+import { config } from '../config/keys'
 import { HttpService, } from '@nestjs/axios'
 import { catchError, firstValueFrom } from "rxjs";
 

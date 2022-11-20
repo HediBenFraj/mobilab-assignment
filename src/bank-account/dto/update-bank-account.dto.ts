@@ -1,5 +1,4 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString, Min } from 'class-validator';
 
 export class UpdateBankAccountDto {
 
@@ -10,6 +9,11 @@ export class UpdateBankAccountDto {
     @IsString()
     @IsOptional()
     readonly name: string;
+
+    @IsOptional()
+    @IsNumber()
+    @Min(0)
+    readonly balance : number
 
     
 }
