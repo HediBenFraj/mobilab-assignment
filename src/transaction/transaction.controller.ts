@@ -28,7 +28,7 @@ export class TransactionController {
  
     let savedTransaction
     await session.withTransaction(async ()=>{
-      const conversionObject = await this.bankAccountService.updateBankAccountBalances(senderAccount,recieverAccount,createTransactionDto.sentAmount,session)
+      const {conversionObject} = await this.bankAccountService.updateBankAccountBalances(senderAccount,recieverAccount,createTransactionDto.sentAmount,session)
     
       savedTransaction = await this.transactionService.create({
         ...createTransactionDto,
