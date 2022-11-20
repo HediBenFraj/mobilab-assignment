@@ -7,7 +7,7 @@ import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
 import { BankAccount } from './entities/bank-account.entity';
 import * as mongoose from 'mongoose'
 import { InvalidInputException } from '../exceptions/global.exceptions';
-import { RequestService } from '../request.service';
+import { RequestService } from '../request/request.service';
 
 @Injectable()
 export class BankAccountService {

@@ -6,7 +6,7 @@ import { BankAccountService } from 'src/bank-account/bank-account.service';
 import { BankAccountNotFoundException } from 'src/exceptions/bank-account.exceptions';
 import { TransactionNotFoundException } from 'src/exceptions/transaction.exceptions';
 import * as mongoose from 'mongoose'
-import { PaginationParams } from './entities/pagination.params';
+import { PaginationParams } from './dto/pagination.params';
 import { InjectConnection } from '@nestjs/mongoose';
 
 @Controller('transaction')

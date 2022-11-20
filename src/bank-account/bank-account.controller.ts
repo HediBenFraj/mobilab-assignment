@@ -5,7 +5,7 @@ import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
 import { BankAccount } from './entities/bank-account.entity';
 import { BankAccountNotFoundException } from 'src/exceptions/bank-account.exceptions';
 import { InvalidInputException } from 'src/exceptions/global.exceptions';
-import { PaginationParams } from 'src/transaction/entities/pagination.params';
+import { PaginationParams } from '../transaction/dto/pagination.params';
 
 @Controller('bank-account')
 export class BankAccountController {
