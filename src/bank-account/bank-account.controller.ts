@@ -1,4 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { BankAccountNotFoundException } from 'src/exceptions/bank-account.exceptions';
+import { InvalidInputException } from 'src/exceptions/global.exceptions';
 import { BankAccountService } from './bank-account.service';
 import { CreateBankAccountDto } from './dto/create-bank-account.dto';
 import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
@@ -11,6 +13,8 @@ export class BankAccountController {
   @Post()
   create(@Body() createBankAccountDto: CreateBankAccountDto): Promise<BankAccount> {
 
+    if(createBankAccountDto.currency !== 'EUR' && createBankAccountDto.currency !== 'USD') throw new InvalidInputException("Account currency should be either 'USD' or 'EUR'")
+
     return this.bankAccountService.create(createBankAccountDto);
   }
 
@@ -20,8 +24,12 @@ export class BankAccountController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<BankAccount> {
-    return this.bankAccountService.findOne(id);
+  async findOne(@Param('id') id: string): Promise<BankAccount> {
+    const foundAccount = await this.bankAccountService.findOne(id)
+
+    if(!foundAccount) throw new BankAccountNotFoundException()
+
+    return foundAccount;
   }
 
   @Get('owner/:id')
@@ -30,12 +38,19 @@ export class BankAccountController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBankAccountDto: UpdateBankAccountDto):Promise<BankAccount> {
+  async update(@Param('id') id: string, @Body() updateBankAccountDto: UpdateBankAccountDto):Promise<BankAccount> {
+    const foundAccount = await this.bankAccountService.findOne(id)
+
+    if(!foundAccount) throw new BankAccountNotFoundException()
+
     return this.bankAccountService.update(id, updateBankAccountDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string): Promise<BankAccount> {
+  async remove(@Param('id') id: string): Promise<BankAccount> {
+    const foundAccount = await this.bankAccountService.findOne(id)
+
+    if(!foundAccount) throw new BankAccountNotFoundException()
     return this.bankAccountService.remove(id);
   }
 }
