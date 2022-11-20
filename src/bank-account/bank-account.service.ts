@@ -25,8 +25,8 @@ export class BankAccountService {
     return await newBankAccount.save()
   }
 
-  async findAll():Promise<BankAccount[]> { 
-    return await this.BankAccountModel.find()
+  async findAll(asc:string, skip: number, limit: number):Promise<BankAccount[]> { 
+    return await this.BankAccountModel.find().sort({ createdAt: asc === 'desc' ? 'desc': "asc"}).skip(skip).limit(limit)
   }
 
   async findOne(id: string) : Promise<BankAccount> {
