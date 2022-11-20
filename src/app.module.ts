@@ -8,7 +8,7 @@ import { config } from './config/keys';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { AuthenticationMiddleware } from './middleware/authentication.middleware';
-import { RequestService } from './request.service';
+import { RequestService } from './request/request.service';
 import { TransactionModule } from './transaction/transaction.module';
 import { HttpModule } from '@nestjs/axios'
 

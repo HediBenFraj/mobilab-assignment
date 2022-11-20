@@ -5,7 +5,7 @@ import mongoose, { Model } from 'mongoose';
 import { InvalidInputException } from '../exceptions/global.exceptions';
 import { config } from '../config/keys';
 import { ConversionService } from '../conversion/conversion.service';
-import { RequestService } from '../request.service';
+import { RequestService } from '../request/request.service';
 import { BankAccountService } from './bank-account.service';
 import { BankAccount } from './entities/bank-account.entity';
 import { BankAccountSchema } from './schemas/bank-account.schema';
