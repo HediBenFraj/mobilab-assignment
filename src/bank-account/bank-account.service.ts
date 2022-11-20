@@ -7,6 +7,7 @@ import { CreateBankAccountDto } from './dto/create-bank-account.dto';
 import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
 import { BankAccount } from './entities/bank-account.entity';
 import * as mongoose from 'mongoose'
+import { InvalidInputException } from 'src/exceptions/global.exceptions';
 
 @Injectable()
 export class BankAccountService {
@@ -29,7 +30,15 @@ export class BankAccountService {
   }
 
   async findOne(id: string) : Promise<BankAccount> {
-    return await this.BankAccountModel.findById(id)
+
+    let foundAccount
+    try {
+      foundAccount = await this.BankAccountModel.findById(id)
+    } catch (error) {
+      if(error.message.includes('Cast to ObjectId failed')) throw new InvalidInputException('Invalid bank account id')
+    }
+
+    return foundAccount
   }
 
   async findByOwnerId(ownerId: string) : Promise<BankAccount[]> {
