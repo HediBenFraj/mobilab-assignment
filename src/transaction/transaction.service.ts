@@ -1,11 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { BankAccountService } from 'src/bank-account/bank-account.service';
 import { BankAccount } from 'src/bank-account/entities/bank-account.entity';
 import { BankAccountNotFoundException } from 'src/exceptions/bank-account.exceptions';
+import { InvalidInputException } from 'src/exceptions/global.exceptions';
 import { LowBalanceException } from 'src/exceptions/transaction.exceptions';
-import { ConversionService } from '../conversion/conversion.service';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { Transaction } from './entities/transaction.entity';
 
@@ -45,7 +44,14 @@ export class TransactionService {
   }
 
   async findOne(id: string): Promise<Transaction> {
-    return await this.TransactionModel.findById(id)
+
+    let foundTransaction
+    try {
+      foundTransaction = await this.TransactionModel.findById(id)
+    } catch (error) {
+      if(error.message.includes('Cast to ObjectId failed')) throw new InvalidInputException('Invalid transaction id')
+    }
+    return foundTransaction
   }
 
 
