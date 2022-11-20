@@ -12,8 +12,8 @@ Generating the app documentation is easy
 simply run `npx @compodoc/compodoc -p tsconfig.json -s`
 
 ## Requirements
-    - installed node globally  
-    - installed npm globally
+    - installed NodeJs  
+    - installed npm globally ( comes built-in with Nodejs )
 
 ## Getting Started:
 
