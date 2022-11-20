@@ -5,14 +5,15 @@ import { Transaction } from './entities/transaction.entity';
 import { BankAccountService } from 'src/bank-account/bank-account.service';
 import { BankAccountNotFoundException } from 'src/exceptions/bank-account.exceptions';
 import { InvalidInputException, LowBalanceException, TransactionNotFoundException } from 'src/exceptions/transaction.exceptions';
-import { ConversionService } from './conversion/conversion.service';
-import { query } from 'express';
-import { TransactionQueryDto } from './dto/transaction-query.dto';
+import * as mongoose from 'mongoose'
 import { PaginationParams } from './entities/pagination.params';
+import { InjectConnection } from '@nestjs/mongoose';
 
 @Controller('transaction')
 export class TransactionController {
-  constructor(private readonly transactionService: TransactionService, private readonly bankAccountService : BankAccountService) {}
+  constructor(@InjectConnection() private readonly connection: mongoose.Connection,
+  private readonly transactionService: TransactionService,
+   private readonly bankAccountService : BankAccountService) {}
 
   @Post()
   async create(@Body() createTransactionDto: CreateTransactionDto): Promise<Transaction> {
@@ -21,20 +22,26 @@ export class TransactionController {
     const senderAccount = await this.bankAccountService.findOne(senderAccountId)
     const recieverAccount = await this.bankAccountService.findOne(recieverAccountId)
 
-    this.transactionService.handleTransactionExceptions(senderAccount,recieverAccount,createTransactionDto.sentAmount)
-     
-    const conversionObject = await this.transactionService.updateBankAccountBalances(senderAccount,recieverAccount,createTransactionDto.sentAmount)
+    this.transactionService.verifyTransactionInput(senderAccount,recieverAccount,createTransactionDto.sentAmount)
 
-    return this.transactionService.create({
-      senderAccountId,
-       recieverAccountId,
-        fromCurrency: senderAccount.currency,
-         toCurrency: recieverAccount.currency,
-         sentAmount: createTransactionDto.sentAmount,
-         recievedAmount : conversionObject.convertedAmount,
-         conversionRate : conversionObject.conversionRate,
-         note : createTransactionDto.note
-         });
+    const session = await this.connection.startSession();
+ 
+    let savedTransaction
+    await session.withTransaction(async ()=>{
+      const conversionObject = await this.bankAccountService.updateBankAccountBalances(senderAccount,recieverAccount,createTransactionDto.sentAmount,session)
+    
+      savedTransaction = await this.transactionService.create({
+        ...createTransactionDto,
+          fromCurrency: senderAccount.currency,
+           toCurrency: recieverAccount.currency,
+           recievedAmount : conversionObject.convertedAmount,
+           conversionRate : conversionObject.conversionRate,
+  
+           });
+    })    
+    session.endSession()
+
+    return savedTransaction
   }
 
   @Get()
