@@ -2,6 +2,9 @@
 
 This repository is created for the Backend engineer position technical assignment at MobiLab Solutions GmbH
 
+## To Note
+
+You can follow the process of development 'User Stories' in the repository project which is public 
 
 ## Requirements
     - installed node globally  
@@ -56,7 +59,7 @@ $ npm run test:cov
     
 ### Run Dockerized App
 run
-   `docker-compose up`
+   `sudo docker-compose up`
     
 ### Available routes
 
