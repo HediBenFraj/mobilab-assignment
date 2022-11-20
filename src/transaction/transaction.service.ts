@@ -1,10 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { BankAccount } from 'src/bank-account/entities/bank-account.entity';
-import { BankAccountNotFoundException } from 'src/exceptions/bank-account.exceptions';
-import { InvalidInputException } from 'src/exceptions/global.exceptions';
-import { LowBalanceException } from 'src/exceptions/transaction.exceptions';
+import { BankAccount } from '../bank-account/entities/bank-account.entity';
+import { BankAccountNotFoundException } from '../exceptions/bank-account.exceptions';
+import { InvalidInputException } from '../exceptions/global.exceptions';
+import { LowBalanceException } from '../exceptions/transaction.exceptions';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { Transaction } from './entities/transaction.entity';
 
