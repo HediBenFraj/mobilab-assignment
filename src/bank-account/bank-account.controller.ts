@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { BankAccountService } from './bank-account.service';
 import { CreateBankAccountDto } from './dto/create-bank-account.dto';
 import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
 import { BankAccount } from './entities/bank-account.entity';
 import { BankAccountNotFoundException } from 'src/exceptions/bank-account.exceptions';
 import { InvalidInputException } from 'src/exceptions/global.exceptions';
+import { PaginationParams } from 'src/transaction/entities/pagination.params';
 
 @Controller('bank-account')
 export class BankAccountController {
@@ -19,8 +20,8 @@ export class BankAccountController {
   }
 
   @Get()
-  findAll(): Promise<BankAccount[]> {
-    return this.bankAccountService.findAll();
+  findAll(@Query(){skip,limit,ASC}: PaginationParams): Promise<BankAccount[]> {
+    return this.bankAccountService.findAll(ASC,skip,limit);
   }
 
   @Get(':id')

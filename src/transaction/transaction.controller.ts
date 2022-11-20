@@ -45,7 +45,7 @@ export class TransactionController {
   }
 
   @Get()
-  async getAllPosts(@Query() { skip, limit, startDate, endDate, ASC }: PaginationParams) {
+  async findAll(@Query() { skip, limit, startDate, endDate, ASC }: PaginationParams) {
 
     
     if(!startDate && !endDate) return this.transactionService.findAll(ASC,skip,limit);
