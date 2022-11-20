@@ -1,38 +1,21 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Backend Engineering Assignment MobiLab Solutions GmbH
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This repository is created for the Backend engineer position technical assignment at MobiLab Solutions GmbH
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Requirements
+    - installed node globally  
+    - installed npm globally
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Getting Started:
 
-## Installation
+### Installation
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+### Running the app
 
 ```bash
 # development
@@ -45,7 +28,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+### Test
 
 ```bash
 # unit tests
@@ -58,16 +41,149 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+### Required dependencies 
+    "@nestjs/platform-express": Express Module which is the backbone for a NestJs App,
+    "axios": Axios is an Http Client used to Send Http Requests,
+    "class-transformer": Transformer Package,
+    "class-validator":  Validation Package",
+    "mongoose": A node ODM used to interact with MongoDB,
+    
+### Development dependencies 
+    "@compodoc/compodoc": Nest Documentation generator package,
+    "@nestjs/cli": nest CLI package to simplify resource( service,controller,module) creation,
+    "jest": Javascript Testing library,
+    "prettier": Formatter library,
+    
+### Run Dockerized App
+run
+   `docker-compose up`
+    
+### Available routes
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+We have two main modules : 
+- Bank Account Module
+- Transaction Module
 
-## Stay in touch
+#### Bank Account Routes
+- getAccounts : GET /bank-account/?skip=0&limit=3&ASC=desc
+- getAccountById : GET /bank-account/:id
+- getAccountsByOwnerId : GET /bank-account/owner/:id
+- createAccount : POST /bank-account
+- editAccount : PATCH /bank-account/:id
+- deleteAccount : DELETE /bank-account/:id
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+#### Transaction Routes
+- getTransactions : GET /transaction/?ASC=sda&limit=5&skip=2
+- getTransactionsBetweenDates : GET /transaction/?startDate=<MongoDB.Date>&endDate=<MongoDB.Date>&ASC=sda&limit=5&skip=2
+- getTransactionsById : GET /transaction/:id
+- getTransactionsBySenderId : GET /transaction/sender-account/:id
+- getTransactionsByRecieverId : GET /transaction/reciever-account/:id
+- createTransaction : POST /transaction/
+- DeleteTransaction : DELETE /transaction/:id
 
-## License
+### Folder/File structure 
 
-Nest is [MIT licensed](LICENSE).
+    __src
+     |
+     |__ bank-account
+     |        |__ dto 
+     |        |__ entities
+     |        |__ schemas 
+     |        |__ back-account.controller.spec.ts
+     |        |__ back-account.module.ts
+     |        |__ back-account.controller.ts
+     |        |__ back-account.service.spec.ts
+     |        |__ back-account.service.ts
+     |
+     |__ config
+     |        |__ keys.ts
+     |
+     |__ conversion
+     |        |__ conversion.service.ts
+     |         
+     |__ exceptions
+     |        |__ bank-account.exceptions.ts
+     |        |__ global.exceptions.ts
+     |        |__ transaction.exceptions.ts
+     |        |__ user.exceptions.ts
+     |
+     |__ filters
+     |        |
+     |        |__ http-exception.filter.ts
+     |
+     |__ interceptors
+     |        |__ logging.interceptor.ts
+     |
+     |__ middleware
+     |        |__ authentication.middleware.ts
+     |        |__ authorization.middleware.ts
+     |
+     |__ transaction    
+     |        |__ dto 
+     |        |__ entities
+     |        |__ schemas 
+     |        |__ transaction.controller.spec.ts
+     |        |__ transaction.module.ts
+     |        |__ transaction.controller.ts
+     |        |__ transaction.service.spec.ts
+     |        |__ transaction.service.ts
+     |
+     |__ request
+     |        |__ request.service.ts
+     |
+     |
+     |__ app.controller.spec.ts
+     |__ app.controller.spec.ts
+     |__ app.module.ts
+     |__ app.controller.ts
+     |__ app.service.spec.ts
+     |__ app.service.ts
+     |__ main.ts
+     
+
+### Understanding the Folder/File structure
+
+#### 1) bank-account
+
+    -  bank-account 
+
+This folder hold everything related to the bank account module like Data Transfer Objects, the BankAccount Model, BankAccountSchema used for mongoose as well as it's controller, service, module, controller tests and service tests 
+
+#### 2) config
+    
+    - config  
+
+This directroy exports an object : config that holds :
+- DB_URI
+- Two keys for acessing the 3rd party currency conversion API
+
+#### 3) conversion
+
+    - conversion 
+
+This folder hold the conversion service where we call the conversion API to convert currencies
+
+#### 4) exceptions 
+
+    - exceptions
+
+This Folder hold custom Exceptions.
+
+#### 5) filters
+
+    - filters
+
+This folder hold filters and specifically the exception filter that is part of the Request flow in Nest JS and is usefull for handeling any thrown exceptions
+
+#### 6) interceptors 
+
+    - interceptors
+
+This folder holds interceptors specifically the logging interceptors. Interceptors are also a part of the Request Flow in Next JS
+
+#### 7) middleware
+
+    - middleware
+
+This directory holds Middlewares specifically the authentication middleware which is a mock middleware that just gets the userId from the global request service which has the request scope so it is initialized for every new request. 
+
