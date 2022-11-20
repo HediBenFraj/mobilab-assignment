@@ -6,6 +6,11 @@ This repository is created for the Backend engineer position technical assignmen
 
 You can follow the process of development 'User Stories' in the repository project which is public 
 
+## Documentation 
+
+Generating the app documentation is easy 
+simply run `npx @compodoc/compodoc -p tsconfig.json -s`
+
 ## Requirements
     - installed node globally  
     - installed npm globally
