@@ -1,18 +1,16 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { BankAccountService } from './bank-account.service';
 import { BankAccountController } from './bank-account.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BankAccountSchema } from './schemas/bank-account.schema';
 import { RequestService } from 'src/request.service';
-import { AuthenticationMiddleware } from 'src/middleware/authentication.middleware';
+import { ConversionService } from 'src/conversion/conversion.service';
+import { HttpModule } from '@nestjs/axios'
 
 @Module({
-  imports: [MongooseModule.forFeature([{name: 'BankAccount',schema:BankAccountSchema}])],
+  imports: [HttpModule, MongooseModule.forFeature([{name: 'BankAccount',schema:BankAccountSchema}])],
   controllers: [BankAccountController],
-  providers: [BankAccountService, RequestService]
+  providers: [BankAccountService, RequestService, ConversionService],
+  exports: [BankAccountService]
 })
-export class BankAccountModule implements NestModule{
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthenticationMiddleware).forRoutes('*')
-  }
-}
+export class BankAccountModule {}

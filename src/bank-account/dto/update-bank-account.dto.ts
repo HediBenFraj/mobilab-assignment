@@ -9,4 +9,6 @@ export class UpdateBankAccountDto {
 
     @IsString()
     readonly name: string;
+
+    
 }

@@ -6,4 +6,6 @@ export class CreateBankAccountDto {
     readonly currency: string;
     
     readonly name: string;
+
+    readonly balance: number
 }
