@@ -73,21 +73,21 @@ We have two main modules :
 - Transaction Module
 
 #### Bank Account Routes
-- getAccounts : GET /bank-account/?skip=0&limit=3&ASC=desc
-- getAccountById : GET /bank-account/:id
-- getAccountsByOwnerId : GET /bank-account/owner/:id
-- createAccount : POST /bank-account
-- editAccount : PATCH /bank-account/:id
-- deleteAccount : DELETE /bank-account/:id
+- getAccounts : GET `/bank-account/?skip=0&limit=3&ASC=desc`
+- getAccountById : GET `/bank-account/:id`
+- getAccountsByOwnerId : GET `/bank-account/owner/:id`
+- createAccount : POST `/bank-account`
+- editAccount : PATCH `/bank-account/:id`
+- deleteAccount : DELETE `/bank-account/:id`
 
 #### Transaction Routes
-- getTransactions : GET /transaction/?ASC=sda&limit=5&skip=2
-- getTransactionsBetweenDates : GET /transaction/?startDate=<MongoDB.Date>&endDate=<MongoDB.Date>&ASC=sda&limit=5&skip=2
-- getTransactionsById : GET /transaction/:id
-- getTransactionsBySenderId : GET /transaction/sender-account/:id
-- getTransactionsByRecieverId : GET /transaction/reciever-account/:id
-- createTransaction : POST /transaction/
-- DeleteTransaction : DELETE /transaction/:id
+- getTransactions : GET `/transaction/?ASC=sda&limit=5&skip=2`
+- getTransactionsBetweenDates : GET `/transaction/?startDate=<MongoDB.Date>&endDate=<MongoDB.Date>&ASC=sda&limit=5&skip=2`
+- getTransactionsById : GET `/transaction/:id`
+- getTransactionsBySenderId : GET `/transaction/sender-account/:id`
+- getTransactionsByRecieverId : GET `/transaction/reciever-account/:id`
+- createTransaction : POST `/transaction/`
+- DeleteTransaction : DELETE `/transaction/:id`
 
 ### Folder/File structure 
 
