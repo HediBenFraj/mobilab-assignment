@@ -11,7 +11,7 @@ export class AppController {
   }
 
   @Get('error')
-  throwError(){
-    throw new InternalServerErrorException()
+  throwError() {
+    throw new InternalServerErrorException();
   }
 }

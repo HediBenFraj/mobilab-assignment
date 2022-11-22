@@ -1,32 +1,35 @@
-import * as mongoose from 'mongoose'
+import * as mongoose from 'mongoose';
 
-export const TransactionSchema = new mongoose.Schema({
-    senderAccountId : {
-        type : String,
-        required : true
+export const TransactionSchema = new mongoose.Schema(
+  {
+    senderAccountId: {
+      type: String,
+      required: true,
     },
-    recieverAccountId : {
-        type : String,
-        required : true,
+    recieverAccountId: {
+      type: String,
+      required: true,
     },
-    sentAmount : {
-        type : Number,
+    sentAmount: {
+      type: Number,
     },
-    recievedAmount : {
-        type : Number,
+    recievedAmount: {
+      type: Number,
     },
-    conversionRate : {
-        type : Number,
+    conversionRate: {
+      type: Number,
     },
-    fromCurrency : {
-        type : String,
+    fromCurrency: {
+      type: String,
     },
-    toCurrency : {
-        type : String,
+    toCurrency: {
+      type: String,
     },
-    note : {
-        type: String
-    }
-},{
-    timestamps: true                    
-})
+    note: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  },
+);
