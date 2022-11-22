@@ -65,7 +65,9 @@ $ npm run test:cov
 ### Run Dockerized App
 You need first to make sure that the docker engine service is running on your machine to do that you can run :
 `sudo systemctl status docker` for linux based systems
-if it shows something like ```○ docker.service - Docker Application Container Engine
+if it shows something like 
+
+```○ docker.service - Docker Application Container Engine
      Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)
      Active: inactive (dead)
 TriggeredBy: ○ docker.socket
