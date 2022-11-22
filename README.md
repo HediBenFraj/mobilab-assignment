@@ -4,7 +4,12 @@ This repository is created for the Backend engineer position technical assignmen
 
 ## To Note
 
+### Task Progress
 You can follow the process of development 'User Stories' in the repository project which is public 
+
+### Branches and versioning
+I followed GitFlow practices for managing branches and version. You can take a look at this article which explains everything about GitFlow
+https://www.atlassian.com/fr/git/tutorials/comparing-workflows/gitflow-workflow
 
 ## Documentation 
 
