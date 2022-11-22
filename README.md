@@ -63,7 +63,35 @@ $ npm run test:cov
     "prettier": Formatter library,
     
 ### Run Dockerized App
-run
+You need first to make sure that the docker engine service is running on your machine to do that you can run :
+`sudo systemctl status docker` for linux based systems
+if it shows something like ```○ docker.service - Docker Application Container Engine
+     Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)
+     Active: inactive (dead)
+TriggeredBy: ○ docker.socket
+       Docs: https://docs.docker.com
+[hedibenfraj@franku sbin]$ 
+``` 
+you can restart the service using 
+`sudo systemctl restart docker` 
+
+once the service is running :
+```● docker.service - Docker Application Container Engine
+     Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)
+     Active: active (running) since Tue 2022-11-22 11:48:16 CET; 1s ago
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 54079 (dockerd)
+      Tasks: 20
+     Memory: 118.2M
+        CPU: 550ms
+     CGroup: /system.slice/docker.service
+             ├─ 54079 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+             └─ 54294 /usr/bin/docker-proxy -proto tcp -host-ip 127.0.0.1 -host-port 3000 -container-ip 172.18.0.2 -container-port 3000
+
+```
+
+run in the project directory
    `sudo docker-compose up`
     
 ### Available routes
