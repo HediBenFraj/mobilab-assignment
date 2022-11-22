@@ -1,23 +1,26 @@
-import * as mongoose from 'mongoose'
+import * as mongoose from 'mongoose';
 
-export const BankAccountSchema = new mongoose.Schema({
-    ownerId : {
-        type : String,
-        required : true,
-        immutable : true
+export const BankAccountSchema = new mongoose.Schema(
+  {
+    ownerId: {
+      type: String,
+      required: true,
+      immutable: true,
     },
-    currency : {
-        type : String,
-        required : true
+    currency: {
+      type: String,
+      required: true,
     },
-    name : {
-        type : String,
-        default : 'New Account'
+    name: {
+      type: String,
+      default: 'New Account',
     },
-    balance :{
-        type : Number,
-        default : 0
-    }
-},{
-    timestamps: true                    
-})
+    balance: {
+      type: Number,
+      default: 0,
+    },
+  },
+  {
+    timestamps: true,
+  },
+);

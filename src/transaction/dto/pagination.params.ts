@@ -1,6 +1,14 @@
-import { IsNumber, Min, IsOptional, IsString, IsDefined, Max, IsNotEmpty } from 'class-validator';
+import {
+  IsNumber,
+  Min,
+  IsOptional,
+  IsString,
+  IsDefined,
+  Max,
+  IsNotEmpty,
+} from 'class-validator';
 import { Type } from 'class-transformer';
- 
+
 export class PaginationParams {
   @IsDefined()
   @IsNotEmpty()
@@ -8,7 +16,7 @@ export class PaginationParams {
   @IsNumber()
   @Min(0)
   skip?: number;
- 
+
   @IsDefined()
   @Type(() => Number)
   @IsNumber()
@@ -29,5 +37,5 @@ export class PaginationParams {
   @IsOptional()
   @Type(() => String)
   @IsString()
-  ASC: string
+  ASC: string;
 }

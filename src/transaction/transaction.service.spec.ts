@@ -8,17 +8,17 @@ import { TransactionService } from './transaction.service';
 describe('TransactionService', () => {
   let service: TransactionService;
 
-
-  let TransactionModel = mongoose.model(Transaction.name,TransactionSchema)
-
+  let TransactionModel = mongoose.model(Transaction.name, TransactionSchema);
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [TransactionService,
-        { 
-          provide: getModelToken(Transaction.name), 
-          useValue: TransactionModel  // <-- Use the Model Class from Mongoose
-        }],
+      providers: [
+        TransactionService,
+        {
+          provide: getModelToken(Transaction.name),
+          useValue: TransactionModel, // <-- Use the Model Class from Mongoose
+        },
+      ],
     }).compile();
 
     service = module.get<TransactionService>(TransactionService);
