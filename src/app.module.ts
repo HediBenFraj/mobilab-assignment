@@ -10,24 +10,33 @@ import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { AuthenticationMiddleware } from './middleware/authentication.middleware';
 import { RequestService } from './request/request.service';
 import { TransactionModule } from './transaction/transaction.module';
-import { HttpModule } from '@nestjs/axios'
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [HttpModule,BankAccountModule, TransactionModule, MongooseModule.forRoot(config.mongoURI)],
+  imports: [
+    HttpModule,
+    BankAccountModule,
+    TransactionModule,
+    MongooseModule.forRoot(config.mongoURI),
+  ],
   controllers: [AppController],
-  providers: [AppService,AuthenticationMiddleware,RequestService,
-  {
-    provide: APP_INTERCEPTOR,
-    scope: Scope.REQUEST,
-    useClass : LoggingInterceptor
-  },
-  {
-    provide: APP_FILTER,
-    useClass: HttpExceptionFilter
-  }], 
+  providers: [
+    AppService,
+    AuthenticationMiddleware,
+    RequestService,
+    {
+      provide: APP_INTERCEPTOR,
+      scope: Scope.REQUEST,
+      useClass: LoggingInterceptor,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
+    },
+  ],
 })
-export class AppModule implements NestModule{
+export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthenticationMiddleware).forRoutes('*')
+    consumer.apply(AuthenticationMiddleware).forRoutes('*');
   }
 }

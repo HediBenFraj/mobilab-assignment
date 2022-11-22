@@ -5,11 +5,14 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { TransactionSchema } from './schemas/transaction.schema';
 import { BankAccountModule } from 'src/bank-account/bank-account.module';
 
-
-
 @Module({
-  imports : [BankAccountModule,MongooseModule.forFeature([{name: 'Transaction', schema:TransactionSchema}])],
+  imports: [
+    BankAccountModule,
+    MongooseModule.forFeature([
+      { name: 'Transaction', schema: TransactionSchema },
+    ]),
+  ],
   controllers: [TransactionController],
-  providers: [TransactionService]
+  providers: [TransactionService],
 })
 export class TransactionModule {}

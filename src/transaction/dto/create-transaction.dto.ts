@@ -1,26 +1,25 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateTransactionDto {
-    @IsString()
-    @IsNotEmpty()
-    readonly senderAccountId: string;
+  @IsString()
+  @IsNotEmpty()
+  readonly senderAccountId: string;
 
-    @IsString()
-    @IsNotEmpty()
-    readonly recieverAccountId: string;
+  @IsString()
+  @IsNotEmpty()
+  readonly recieverAccountId: string;
 
-    @IsNumber()
-    @IsNotEmpty()
-    readonly sentAmount: number;
+  @IsNumber()
+  @IsNotEmpty()
+  readonly sentAmount: number;
 
-    readonly fromCurrency: string;
+  readonly fromCurrency: string;
 
-    readonly toCurrency: string;
+  readonly toCurrency: string;
 
-    readonly recievedAmount: number;
+  readonly recievedAmount: number;
 
-    readonly conversionRate: number;
+  readonly conversionRate: number;
 
-    readonly note: string;
-
+  readonly note: string;
 }
